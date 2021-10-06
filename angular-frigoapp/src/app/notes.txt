@@ -1,0 +1,17 @@
+To allow navigation, we need AppRoutingModule
+    -> In Angular, the best practice is to load and configure the router in a separate, top-level module that is dedicated to routing and imported by the root AppModule.
+    -> By convention, the module class name is AppRoutingModule and it belongs in the app-routing.module.ts in the src/app folder.
+Use the CLI to generate it:
+> ng generate module app-routing --flat --module=app
+    --flat puts the file in src/app instead of its own folder.
+    --module=app tells the CLI to register it in the imports array of the AppModule.
+
+
+
+[(ngModel)] is Angular's two-way data binding syntax.
+    > Two-way binding gives components in your application a way to share data. 
+    > Use two-way binding to listen for events and update values simultaneously between parent and child components
+Although ngModel is a valid Angular directive, it isn't available by default. It belongs to the optional FormsModule and you must opt-in to using it.
+    You need to import the FormsModule symbol from the @angular/forms library and then add FormsModule to the @NgModule metadata's imports array, 
+    which contains a list of external modules that the application needs.
+

@@ -1,0 +1,20 @@
+<h3>Component 'produit-nouveau'</h3>
+
+<div>
+    <label>Je remplis mon frigo </label>
+    <p>Nom du produit : </p>
+    <input    
+        id="nomNouveauProduit" 
+        placeholder="ex. Tomate"
+    />
+    <p>Quantit&eacute; : </p>
+    <input    
+        id="quantiteNouveauProduit" 
+        placeholder="ex. 5"
+    />
+</div>
+
+<div>
+    <button (click)="ajouterProduit()">Valider</button>
+    <button (click)="retour()">Annuler</button>
+</div>
