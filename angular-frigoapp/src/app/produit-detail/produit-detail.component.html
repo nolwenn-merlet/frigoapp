@@ -1,5 +1,13 @@
 <h3>Component 'produit-detail'</h3>
-<h2>{{produit.nomProduit}}</h2>
-<div>
-    <span> quantite: {{produit.quantite}}</span>
+
+<div *ngIf="produit">
+    <h2>{{produit.nom}}</h2>
+    <div>
+        <span> quantite: {{produit.quantite}}</span>
+    </div>
+
+    <button>Modifier</button>
+    <button (click)="supprimerProduit()">Supprimer</button>
+    
+    <button routerLink="/produits">Retour &agrave; la liste des produits</button>
 </div>

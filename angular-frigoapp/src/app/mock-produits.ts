@@ -1,14 +1,14 @@
 import { Produit } from "./produit"; 
 
 export const PRODUITS: Produit[] = [
-  { id: 11, nomProduit: 'Tomate', quantite: 5 },
-  { id: 12, nomProduit: 'Aubergine', quantite: 1 },
-  { id: 13, nomProduit: 'Courgette', quantite: 3 },
-  { id: 14, nomProduit: 'Carotte', quantite: 15 },
-  { id: 15, nomProduit: 'Pomme', quantite: 12 },
-  { id: 16, nomProduit: 'Poire', quantite: 4 },
-  { id: 17, nomProduit: 'Fraise', quantite: 250 },
-  { id: 18, nomProduit: 'Concombre', quantite: 2 },
-  { id: 19, nomProduit: 'Mangue', quantite: 2 },
-  { id: 20, nomProduit: 'Haricot', quantite: 500 }
+  { id: 11, nom: 'Tomate', quantite: 5 },
+  { id: 12, nom: 'Aubergine', quantite: 1 },
+  { id: 13, nom: 'Courgette', quantite: 3 },
+  { id: 14, nom: 'Carotte', quantite: 15 },
+  { id: 15, nom: 'Pomme', quantite: 12 },
+  { id: 16, nom: 'Poire', quantite: 4 },
+  { id: 17, nom: 'Fraise', quantite: 250 },
+  { id: 18, nom: 'Concombre', quantite: 2 },
+  { id: 19, nom: 'Mangue', quantite: 2 },
+  { id: 20, nom: 'Haricot', quantite: 500 }
 ];

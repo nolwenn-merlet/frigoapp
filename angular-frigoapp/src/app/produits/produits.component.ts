@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
+
 import { Produit } from '../produit';
 import { PRODUITS } from '../mock-produits';
-import { Location } from '@angular/common';
+import { ProduitService } from '../produit.service';
 
 
 @Component({
@@ -13,14 +15,20 @@ import { Location } from '@angular/common';
 
 export class ProduitsComponent implements OnInit {
 
-  produits = PRODUITS ; //Pour recuperer les donnees fictives
+  produits: Produit[] = []; 
 
   constructor(
-    private location: Location
-
+    private location: Location,
+    private produitService: ProduitService
   ) { }
 
   ngOnInit(): void {
+    this.getProduits();
+  }
+
+  getProduits(): void {
+    this.produitService.getProduits()
+      .subscribe( produits => this.produits = produits);
   }
 
   retour(): void {

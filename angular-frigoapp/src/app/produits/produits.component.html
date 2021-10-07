@@ -4,10 +4,10 @@
   <li *ngFor="let produit of produits">
 
     <a routerLink="/detail/{{produit.id}}">
-        {{produit.nomProduit}}
+        {{produit.nom}}, {{produit.quantite}}
     </a>    
   </li>
 </ul>
 
-<a routerLink="/nouveau">Ajouter un nouveau produit dans mon frigo </a>  
-<button (click)="retour()">Revenir au contenu du frigo</button>
+<button routerLink="/nouveau">Ajouter un nouveau produit dans mon frigo </button>  
+<button routerLink="/pagePrincipale">Revenir &agrave; la page principale</button>
