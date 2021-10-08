@@ -1,24 +1,24 @@
 <h3>Component 'produit-nouveau'</h3>
 
 <h3>Je remplis mon frigo</h3>
-
 <div class="nouveauProduit">
     <form [formGroup]="formNouveauProduit" (ngSubmit)="ajouterProduit()">
         <div class="form-nomProduit">
-            <label>Nom du produit : </label>
-            <input id="nom-nouveau-produit" type="text" formControlName="nomNouveauProduit" placeholder="ex. Tomate"/>
+            <label>Nom du produit* : </label>
+            <input id="nom" type="text" formControlName="nom" placeholder="ex. Tomate" required/>
         </div>
 
         <div class="form-nomProduit">
-            <label>Quantit&eacute; : </label>
-            <input id="quantite-nouveau-produit" type="text" formControlName="quantiteNouveauProduit" placeholder="ex. 5"/>
+            <label>Quantit&eacute;* : </label>
+            <input id="quantite" type="text" formControlName="quantite" placeholder="ex. 5" required/>
+        </div>
+    
+        <div>
+            <p>*Tous les champs sont requis pour valider l'ajout du produit</p>
+            <button type="submit">Valider</button>
+        </div>
+        <div>
+            <button (click)="retour()">Annuler</button>
         </div>
     </form>
 </div>
-<div>
-    <p>Tous les champs sont requis pour valider l'ajout du produit</p>
-    <button type="submit" [disabled]="!formNouveauProduit.valid">Valider</button>
-    <button (click)="retour()">Annuler</button>
-</div>
-
-

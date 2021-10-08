@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 import { Produit } from '../produit';
 import { ProduitService } from '../produit.service';
@@ -12,41 +12,40 @@ import { ProduitService } from '../produit.service';
 
 
 export class ProduitNouveauComponent implements OnInit {
-
-  formNouveauProduit = new FormGroup({
-    nomNouveauProduit: new FormControl(),
-    quantiteNouveauProduit: new FormControl(),
-  });
-
+  
   produit!: Produit;
-
-
+  formNouveauProduit!: FormGroup;
+  
   constructor(
     private location: Location,
-    private produitService: ProduitService
+    private produitService: ProduitService,
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit(): void {
-  }
-
-  getNomNouveauProduit(): string {
-    return String(this.formNouveauProduit.get('nomNouveauProduit'));
-  }
-
-  getQuantiteNouveauProduit(): number {
-    return Number(this.formNouveauProduit.get('quantiteNouveauProduit'));
+    this.formNouveauProduit = this.formBuilder.group({
+      nom: ['', [
+        Validators.required,
+        Validators.minLength(3)
+      ]],
+      quantite: ['', [
+        Validators.required,
+        Validators.min(0)
+      ]]
+    });
   }
 
   ajouterProduit(): void {
-    if(this.getNomNouveauProduit().length == 0 || !this.getQuantiteNouveauProduit()){
-       return; 
+    if (this.formNouveauProduit.invalid) {
+      alert('Formulaire non valide, tous les champs sont requis pour valider l\'ajout d\'un produit');
+      return;
     }
-
-    this.produitService.ajouterProduit(this.formNouveauProduit as unknown as Produit )
-      .subscribe(produit => this.produit = produit);
+    this.produitService.ajouterProduit(this.formNouveauProduit.value as Produit )
+      .subscribe(produit => {
+          this.produit = produit; 
+          this.retour();
+        })
   }
-  
-
   
   retour(): void {
     this.location.back();

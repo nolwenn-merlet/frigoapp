@@ -13,6 +13,7 @@ import { ProduitService } from '../produit.service';
 export class ProduitDetailComponent implements OnInit {
 
   produit: Produit | undefined;
+  id = Number(this.route.snapshot.paramMap.get('id'));
 
   constructor(
     private route: ActivatedRoute,
@@ -25,15 +26,19 @@ export class ProduitDetailComponent implements OnInit {
   }
 
   getProduit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.produitService.getProduit(id)
+    this.produitService.getProduit(this.id)
       .subscribe(produit => this.produit = produit);
   }
 
   supprimerProduit(){
-    //A implementer
+    this.produitService.supprimerProduit(this.id)
+      .subscribe(() => this.retour());
   }
 
+
+  modifierProduit(){
+    // A implementer
+  }
 
   retour(): void {
     this.location.back();

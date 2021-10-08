@@ -1,13 +1,13 @@
 <h3>Component 'produit-recherche'</h3>
-<div>
-    <label>Rechercher un produit : </label>
-    <input 
-        #searchBox 
-        id="search-box" 
-        placeholder="ex. Tomate"
-       
-    />
-</div>
+<form [formGroup]="recherche" (ngSubmit)="rechercher()">
+    <div>
+        <label>Rechercher un produit : </label>
+        <input id="nom" type="text" formControlName="nom" placeholder="ex. tomate"/>
+    </div>
+    <button type="submit">Rechercher</button>
+</form>
+
+
 
 <!--Note---------------------------------------------------
     [(ngModel)] is Angular's two-way data binding syntax.
