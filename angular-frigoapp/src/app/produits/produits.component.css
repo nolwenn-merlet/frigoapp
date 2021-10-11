@@ -1,0 +1,11 @@
+button{
+    margin: 2em;
+}
+
+.retour{
+    background-color:lightblue; 
+}
+
+.ajout{
+    background-color:lightyellow; 
+}

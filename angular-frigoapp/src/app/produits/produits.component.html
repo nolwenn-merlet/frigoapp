@@ -1,13 +1,11 @@
-<h3>Component 'produits'</h3>
-
 <ul class="produits">
   <li *ngFor="let produit of produits">
 
     <a routerLink="/detail/{{produit.id}}">
-        {{produit.nom}}, {{produit.quantite}}
+        {{produit.nom | titlecase}}, {{produit.quantite}}
     </a>    
   </li>
 </ul>
 
-<button routerLink="/nouveau">Ajouter un nouveau produit dans mon frigo </button>  
-<button routerLink="/pagePrincipale">Revenir &agrave; la page principale</button>
+<button class="ajout" routerLink="/nouveau">Ajouter un nouveau produit dans mon frigo </button>  
+<button class="retour" routerLink="/pagePrincipale">Retour page principale</button>

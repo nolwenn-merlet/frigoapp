@@ -1,13 +1,19 @@
-<h3>Component 'produit-detail'</h3>
-
 <div *ngIf="produit">
-    <h2>{{produit.nom}}</h2>
+    <h2>{{produit.nom | titlecase}}</h2>
     <div>
         <span> quantite: {{produit.quantite}}</span>
     </div>
+    <button class="suppression" (click)="supprimerProduit()">Supprimer ce produit</button>
 
-    <button>Modifier</button>
-    <button (click)="supprimerProduit()">Supprimer</button>
+    <form [formGroup]="formModifProduit" (ngSubmit)="modifierProduit()">
+        <div>
+            <label>Nouvelle quantite ? </label>
+            <input id="nom" type="text" formControlName="quantite" placeholder="ex. 5"/>
+        
+            <button class="update" type="submit">Modifier quantite</button>
+        </div>
+    </form>
     
-    <button routerLink="/produits">Retour &agrave; la liste des produits</button>
+    <button class="retour" (click)="retour()">Retour</button>
+
 </div>

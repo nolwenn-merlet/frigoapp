@@ -1,5 +1,4 @@
-<h3>Component 'produit-recherche'</h3>
-<form [formGroup]="recherche" (ngSubmit)="rechercher()">
+<form [formGroup]="formRecherche" (ngSubmit)="rechercher();viderInput()">
     <div>
         <label>Rechercher un produit : </label>
         <input id="nom" type="text" formControlName="nom" placeholder="ex. tomate"/>
@@ -7,19 +6,3 @@
     <button type="submit">Rechercher</button>
 </form>
 
-
-
-<!--Note---------------------------------------------------
-    [(ngModel)] is Angular's two-way data binding syntax.
-	Two-way binding gives components in your application a way to share data. 
-    Use two-way binding to listen for events and update values simultaneously 
-    between parent and child components
-    Although ngModel is a valid Angular directive, it isn't available by default. 
-    It belongs to the optional FormsModule and you must opt-in to using it.
-    You need to import the FormsModule symbol from the @angular/forms library
-    and then add FormsModule to the @NgModule metadata's imports array, 
-    which contains a list of external modules that the application needs.
-
-
-     [(ngModel)]="produit.nomProduit"
--------------------------------------------------------------->

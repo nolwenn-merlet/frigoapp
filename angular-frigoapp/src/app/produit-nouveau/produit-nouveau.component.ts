@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
 import { Location } from '@angular/common';
 import { Produit } from '../produit';
 import { ProduitService } from '../produit.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-produit-nouveau',
@@ -15,11 +16,14 @@ export class ProduitNouveauComponent implements OnInit {
   
   produit!: Produit;
   formNouveauProduit!: FormGroup;
+  id: number | undefined;
+  produitExiste: boolean = false;
   
   constructor(
     private location: Location,
     private produitService: ProduitService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -30,23 +34,37 @@ export class ProduitNouveauComponent implements OnInit {
       ]],
       quantite: ['', [
         Validators.required,
-        Validators.min(0)
+        Validators.min(1)
       ]]
     });
   }
 
+  rechercher(): void {
+    this.produitService.rechercherProduit(this.formNouveauProduit.value as Produit)
+      .subscribe(produit => {
+        this.produit = produit[0] ;
+        console.log('produit', this.produit);
+
+        if (this.produit !== null) {
+            alert("Ce produit existe deja");
+            this.router.navigateByUrl('/detail/'+this.produit.id) ; 
+          }
+        else {
+          this.ajouterProduit();
+        }
+      });
+  }
+
   ajouterProduit(): void {
-    if (this.formNouveauProduit.invalid) {
-      alert('Formulaire non valide, tous les champs sont requis pour valider l\'ajout d\'un produit');
-      return;
-    }
     this.produitService.ajouterProduit(this.formNouveauProduit.value as Produit )
       .subscribe(produit => {
           this.produit = produit; 
           this.retour();
         })
   }
+
   
+
   retour(): void {
     this.location.back();
   }

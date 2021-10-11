@@ -1,8 +1,6 @@
-<h3>Component 'produit-nouveau'</h3>
-
 <h3>Je remplis mon frigo</h3>
 <div class="nouveauProduit">
-    <form [formGroup]="formNouveauProduit" (ngSubmit)="ajouterProduit()">
+    <form [formGroup]="formNouveauProduit" (ngSubmit)="rechercher()">
         <div class="form-nomProduit">
             <label>Nom du produit* : </label>
             <input id="nom" type="text" formControlName="nom" placeholder="ex. Tomate" required/>
@@ -15,10 +13,11 @@
     
         <div>
             <p>*Tous les champs sont requis pour valider l'ajout du produit</p>
-            <button type="submit">Valider</button>
+            <button type="submit" [disabled]="formNouveauProduit.invalid" >Valider</button>
         </div>
         <div>
-            <button (click)="retour()">Annuler</button>
+            
         </div>
     </form>
+    <button (click)="retour()">Annuler</button>
 </div>

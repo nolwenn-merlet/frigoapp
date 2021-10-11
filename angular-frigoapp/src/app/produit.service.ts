@@ -33,27 +33,17 @@ export class ProduitService {
     const url = `${this.produitsUrl}/${id}`;
     return this.http.get<Produit>(url)
       .pipe(
-        catchError(this.handleError<Produit>(`getProduit id=${id}`)),
+        catchError(this.handleError<Produit>(`getProduit id=${id}`))
       );
   }
 
-  
 
-/*  rechercherProduit(term: string): Observable<Produit[]> {
-    if (!term.trim()) {
-      // if not search term, return empty produit array.
-      return of([]);
-    }
-    return this.http.get<Produit[]>(`${this.produitsUrl}/?name=${term}`)
-    .pipe(
-      catchError(this.handleError<Produit[]>('rechercherProduits', []))
-    );
-  }*/
 
-  rechercherProduit(produit: Produit): Observable<Produit> {
-    return this.http.get<Produit>(`${this.produitsUrl}/?nom=${produit.nom}`)
+  rechercherProduit(produit: Produit): Observable<Produit[]> {
+    const url = `${this.produitsUrl}/?nom=${produit.nom}`;
+    return this.http.get<Produit[]>(url)
     .pipe(
-      catchError(this.handleError<Produit>('rechercherProduits'))
+      catchError(this.handleError<Produit[]>(`rechercherProduit nom=${produit.nom}`))
     );
   }
 
@@ -80,8 +70,11 @@ export class ProduitService {
 
   /** PUT: Mise-a-jour d'un produit sur le serveur */
   updateProduit(produit: Produit): Observable<any> {
-    return this.http.put(this.produitsUrl, produit, this.httpOptions)
+    const url = `${this.produitsUrl}/${produit.id}`;
+
+    return this.http.put(url, produit, this.httpOptions)
       .pipe(
+        tap(_ => console.log(`mise-a-jour du produit id# ${produit.id}`)),
         catchError(this.handleError<any>('updateProduit'))
       );
   }
@@ -98,7 +91,7 @@ export class ProduitService {
     return (error: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
+      console.log("erreur:" + error); // log to console instead
 /*
       // TODO: better job of transforming error for user consumption
       console.log(`${operation} failed: ${error.message}`);

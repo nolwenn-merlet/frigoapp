@@ -1,0 +1,16 @@
+
+h2{
+    text-indent: 2em;
+}
+
+button{
+    margin: 2em;
+}
+
+.retour{
+    background-color:lightblue; 
+}
+
+.update{
+    background-color:lightyellow; 
+}
